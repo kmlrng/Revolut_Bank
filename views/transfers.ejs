@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankist | Customers</title>
+    <link rel="stylesheet" href="/css/transfers.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <input type="checkbox" id="nav-toggle" />
+        <div class="logo">
+          <a href="/"><img src="/images/logo.png" alt="bankist" /></a>
+        </div>
+        <ul class="links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/customers">View Customers</a></li>
+        </ul>
+        <label for="nav-toggle" class="icon-burger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </label>
+      </nav>
+    </header>
+    <div class="container">
+      <table>
+        <caption>
+          Transfer Records <% if(success.length){ %>
+          <div class="alert">
+            <span
+              class="closebtn"
+              onclick="this.parentElement.style.display='none';"
+              >&times;</span
+            >
+            <%= success %>
+          </div>
+          <% } %>
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Transfer ID</th>
+            <th scope="col">Sender</th>
+            <th scope="col">Receiver</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let transfer of transfers){ %>
+          <tr>
+            <td scope="row" data-label="Transfer ID"><%= transfer._id %></td>
+            <td data-label="Sender"><%= transfer.sender %></td>
+            <td data-label="Receiver"><%= transfer.receiver %></td>
+            <td data-label="Amount">₹<%= transfer.amount %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
